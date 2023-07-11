@@ -30,5 +30,8 @@ after the process is complete, run:
 
 now you program is available at: https://localhost:3000
 
-navigate to Routes.php in backend dir to see various endpoint. you can access get endpoints directly at: https://localhost:8080/<endpoint>
+navigate to Routes.php in backend dir to see various endpoint. you can access get endpoints directly at: https://localhost:8080/<endpoint>/
+
+repalce <endpoint> with the actual path for the endpoints. i.e.
+https://localhost:8080/getServices to view all services available.
 
