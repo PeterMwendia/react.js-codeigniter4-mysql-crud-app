@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+    
+    - name: Install MySQL server
+      run: sudo apt-get install mysql-server-8.33
+
+    - name: Set up composer
+      run: composer install
+
+    - name: Set up .env
+      run: |
+        echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+        echo "DB_USER=${{ secrets.DB_USER }}" >> .env
+        echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+        echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
+        echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
+
+    - name: Start PHP Server
+      run: php spark serve &
+
+    - name: Install npm dependencies
+      run: npm install
+
+    - name: Start npm
+      run: npm start
+
