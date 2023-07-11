@@ -26,7 +26,7 @@ jobs:
         node-version: '18'
     
     - name: Install MySQL server
-      run: sudo apt-get install mysql-server-8.33
+      run: sudo apt-get install -y mysql-server
 
     - name: Set up composer
       run: composer install
