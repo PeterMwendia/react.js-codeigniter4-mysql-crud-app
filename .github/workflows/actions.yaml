@@ -55,5 +55,5 @@ jobs:
     - name: Start npm
       run: |
         cd full-stack/'frontend - react'
-        npm start
+        nohup npm start &
 
